@@ -2,7 +2,7 @@ var express = require('express');
 var jwt = require('jsonwebtoken');
 var authCtrl = require('../controllers/auth.controller');
 var listCtrl = require('../controllers/list.controller');
-
+var GrpCtrl = require('../controllers/group.controller')
 var router = express.Router();
 
 var isAuthenticated = function(req, res, next) {
@@ -46,6 +46,13 @@ var isNotAuthenticated = function(req, res, next) {
     });
   }
 };
+
+//---------------------------Group Routes---------------------------------
+router.post('/group/Create', GrpCtrl.CreateGroup);
+router.post('/group/join', GrpCtrl.join);
+router.post('/group/check', GrpCtrl.check);
+router.get('/group/getAllGroups',GrpCtrl.viewGroups);
+
 
 //-----------------------------Authentication Routes-------------------------
 router.post('/auth/register', isNotAuthenticated, authCtrl.register);

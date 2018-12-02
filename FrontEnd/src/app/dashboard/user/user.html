@@ -1,0 +1,44 @@
+<!--div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <button class="btn" style="background-color:#A93226"  *ngIf = !loggedIn  (click) = "signInWithGoogle()"><i class="fa fa-google"  ></i></button> 
+    <button *ngIf = loggedIn type="button" class="socicon-facebook" (click) = "signOut()">Logout</button>
+    <button class="btn" style="background-color:#154360"  *ngIf = !loggedIn  (click) = "signInWithFB()"><i class="fa fa-facebook"  ></i> Login with Facebook </button> 
+    <button class="btn" style="background-color:#154360"   (click) = "Route()"><i class="fa fa-facebook"  ></i> Try Routing </button> 
+  
+    <div *ngIf = loggedIn>
+    <img src="{{ user.photoUrl }}">
+  <div>
+    <h4>{{ user.name }}</h4>
+    <p>{{ user.email }}</p>
+  </div>
+  </div>
+</div-->
+
+
+<div class="container" *ngIf = !loggedIn >
+      <div class="row">
+        <h2 style="text-align:center">Login with Social Media</h2>
+  
+        <div class="col"  >
+          <button class="fb btn" style="background-color:#154360" (click) = "signInWithFB()">
+            <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+         </button>
+         <button class="google btn"   (click) = "signInWithGoogle()"> 
+            <i class="fa fa-google fa-fw" ></i> Login with Google+</button>
+        </div>
+  
+    </div>
+  </div>
+  
+  <div *ngIf = loggedIn>
+     <button *ngIf = loggedIn type="button" class="btn" style="width: 5%; padding:250 0px" (click) = "signOut()">Logout</button>
+     <button class="btn" style="background-color:#154360"   (click) = "Route()">View All Groups </button> 
+
+    <img src="{{ user.photoUrl }}">
+  <div>
+    <h4>{{ user.name }}</h4>
+    <p>{{ user.email }}</p>
+  </div>
+  </div>
+  

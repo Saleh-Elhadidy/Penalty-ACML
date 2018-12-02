@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: './items/items.module#ItemsModule'
       },
       {
+        path: 'groups',
+        loadChildren: './groups/groups.module#GroupsModule'
+      },
+      {
         path: '',
         redirectTo: 'user',
         pathMatch: 'full'

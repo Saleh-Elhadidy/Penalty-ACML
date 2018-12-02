@@ -63,3 +63,4 @@ mongoose.connect(dbUrl, function(err) {
 
 // Require all the models of the database here so that they get created
 require('../models/user.model');
+require('../models/group.model');
