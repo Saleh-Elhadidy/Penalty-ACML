@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-
-import { ThemeModule } from '../../@theme/theme.module';
+import {CommonModule} from '@angular/common'
 import { UserRoutingModule } from './user-routing.module';
 import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 import { UserComponent } from './user.component';
@@ -23,7 +22,7 @@ export function provideConfig() {
 }
 
 @NgModule({
-  imports: [ThemeModule, UserRoutingModule , JwSocialButtonsModule,SocialLoginModule],
+  imports: [UserRoutingModule , JwSocialButtonsModule,SocialLoginModule,CommonModule],
   declarations: [UserComponent],
   providers: [
     {

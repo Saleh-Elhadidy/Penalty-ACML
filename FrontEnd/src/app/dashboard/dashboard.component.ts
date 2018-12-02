@@ -1,22 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-
-import { MENU_ITEMS } from './dashboard-menu';
-
-import { NbMenuItem } from '@nebular/theme/components/menu/menu.service';
+import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
-  template: `
-    <ngx-main-layout>
-      <nb-menu [items]="menu"></nb-menu>
-      <router-outlet></router-outlet>
-    </ngx-main-layout>
-  `
+  template: `<router-outlet></router-outlet>`
 })
-export class DashboardComponent implements OnInit {
-  menu: NbMenuItem[];
+export class DashboardComponent {
+  constructor(private router: Router) { }
 
-  ngOnInit() {
-    this.menu = MENU_ITEMS;
+  Route(){
+  this.router.navigate(["/items"]);
   }
 }

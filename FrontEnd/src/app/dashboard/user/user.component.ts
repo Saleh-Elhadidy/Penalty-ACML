@@ -22,7 +22,7 @@ import { HttpClient } from '@angular/common/http';
   <p>{{ user.email }}</p>
 </div>
 </div>
-  `
+`
 })
 export class UserComponent {
   private user: SocialUser;

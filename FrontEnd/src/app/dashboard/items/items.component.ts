@@ -30,7 +30,6 @@ export class ItemsComponent implements AfterViewChecked {
     onAuthorize:(data,actions) =>{
       return actions.payment.execute().then((payment) =>
       {
-        //console.log("payed");
       })
     }
   }
