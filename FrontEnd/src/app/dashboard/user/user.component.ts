@@ -3,6 +3,7 @@ import { AuthService } from "angular4-social-login";
 import {GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
 import { SocialUser } from "angular4-social-login";
 import {Router} from "@angular/router";
+
 import { HttpClient } from '@angular/common/http';
 
 @Component({

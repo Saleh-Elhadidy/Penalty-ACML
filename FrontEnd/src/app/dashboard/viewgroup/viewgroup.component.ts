@@ -4,10 +4,10 @@ import { environment } from '../../../environments/environment';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-dashboard-groups',
-  templateUrl: `./groups.html`
+  selector: 'app-dashboard-viewgroup',
+  templateUrl: `./viewgroup.html`
 })
-export class GroupsComponent implements OnInit {
+export class ViewGroupComponent implements OnInit {
   public groups: any[] = [];
   constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { }
 ngOnInit(){

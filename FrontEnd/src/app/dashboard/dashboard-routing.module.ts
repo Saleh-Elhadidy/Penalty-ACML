@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: './groups/groups.module#GroupsModule'
       },
       {
+        path: 'viewgroup',
+        loadChildren: './viewgroup/viewgroup.module#ViewGroupModule'
+      },
+      {
         path: '',
         redirectTo: 'user',
         pathMatch: 'full'
