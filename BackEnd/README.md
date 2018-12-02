@@ -18,5 +18,3 @@ The backend for a simple to-do list web app.
 1. Clone the repo.
 2. npm install
 3. npm start
-
-&#9400; Omar Doma 2018
