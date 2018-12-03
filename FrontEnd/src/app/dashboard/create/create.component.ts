@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import {Router} from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard-create',
@@ -15,7 +16,7 @@ export class CreateComponent implements OnInit {
   StartDate:any ="" ;
   EndDate:any="";
   description:any="";
-  constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { }
+  constructor(private toastr: ToastrService,private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { }
 ngOnInit(){
 }
 
@@ -36,7 +37,9 @@ CreateGroup(){
      res => {
       console.log(res)
       this.router.navigate(["/dashboard/groups"]);
-     }
+     }, err => {
+      this.toastr.error("", err.error["msg"]);
+      }
    );
  }
 

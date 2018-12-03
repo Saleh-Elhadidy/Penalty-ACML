@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import {Router} from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard-groups',
@@ -12,7 +13,7 @@ export class GroupsComponent implements OnInit {
  emailin:any=localStorage.getItem("UserMail");
 
  
-  constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { 
+  constructor(private toastr: ToastrService,private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { 
    
   }
 
@@ -48,7 +49,10 @@ this.router.navigate(["/dashboard/create"]);
       console.log(res)
       localStorage.setItem("GroupName", JSON.stringify(Name));
       this.router.navigate(['dashboard/viewgroup/']);     }
-   );
+      , err => {
+				this.toastr.error("", err.error["msg"]);
+      }
+      );
   }
 
 
