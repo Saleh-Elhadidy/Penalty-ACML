@@ -1,11 +1,11 @@
 <div class="w3-container w3-teal">
         <Button (click)="Route()" class="btn btn-danger">Creat Group</Button>
         <div *ngFor="let group of groups">
-            <div class="card" style="padding:10px 15px; padding-bottom:80px; margin-bottom:20px;display: block; ">
+            <div class="card" style= "background-color: darkgrey" style="padding:10px 15px; padding-bottom:80px; margin-bottom:20px;display: block; ">
                 <div style="float:left;">
                     <h2>{{group.name}}</h2> 
-                    <span *ngFor="let habit of group.habits;">
-                         <a>{{habit}}</a>
+                    <span >
+                         <a>{{group.Description}}</a>
                         </span>
                 </div>
                 <div style="float:right;">
@@ -15,4 +15,30 @@
             </div>
         </div>
     </div>
+    <!--div class="container">
+            <div class="card">
+              <figure class="front">
+                <img src="https://habithq.ca/wp-content/uploads/2014/06/HAB-LogoGraphic-515x266.png" alt="front">
+                <div class="caption">
+                  <h2>john <span>doe</span></h2>
+                  <p>web developer</p>
+                  <a href="#">View more</a>
+                </div>			
+              </figure>
+          
+              <figure class="back">
+                 <img src="http://www.jboeijenga.nl/img/back.jpg" alt="back">
+                  <div class="caption">
+                    <dl>
+                      <dt>Phone</dt>
+                      <dd>012 345 6789</dd>
+                      <dt>Email</dt>
+                      <dd>johndoe@gmail.com</dd>
+                      <dt>Web</dt>
+                      <dd>www.johndoe.com</dd>
+                    </dl>
+                  </div>
+              </figure>
+            </div>
+          </div-->
    

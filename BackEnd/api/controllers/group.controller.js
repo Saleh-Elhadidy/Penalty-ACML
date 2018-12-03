@@ -118,7 +118,7 @@ module.exports.join = function(req, res, next){ //req: name of group, email of j
         else
         {
           var x = 0;
-          for(x = 0;x<group.participants;x++){
+          for(x = 0;x<group.participants.length;x++){
             if(group.participants[x]==req.body.email){
                return res.status(422).json({
                 err: null,
