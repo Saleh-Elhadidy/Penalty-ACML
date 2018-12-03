@@ -40,6 +40,8 @@ export class UserComponent implements OnInit {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
+      if(this.loggedIn)
+      localStorage.setItem("UserMail", JSON.stringify(user.email));
     });
   }
  

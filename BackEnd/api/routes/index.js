@@ -52,7 +52,7 @@ router.post('/group/Create', GrpCtrl.CreateGroup);
 router.post('/group/join', GrpCtrl.join);
 router.post('/group/check', GrpCtrl.check);
 router.get('/group/getAllGroups',GrpCtrl.viewGroups);
-
+router.get('/group/viewoneGroup/:name',GrpCtrl.viewoneGroup);
 
 //-----------------------------Authentication Routes-------------------------
 router.post('/auth/register', isNotAuthenticated, authCtrl.register);

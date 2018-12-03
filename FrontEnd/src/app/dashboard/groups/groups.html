@@ -1,4 +1,5 @@
 <div class="w3-container w3-teal">
+        <Button (click)="Route()" class="btn btn-danger">Creat Group</Button>
         <div *ngFor="let group of groups">
             <div class="card" style="padding:10px 15px; padding-bottom:80px; margin-bottom:20px;display: block; ">
                 <div style="float:left;">
@@ -9,8 +10,9 @@
                 </div>
                 <div style="float:right;">
                     <!--Button (click)="ViewGroup(group._id)" class="btn btn-danger">view</Button-->
-                    <Button (click)="Route()" class="btn btn-danger">view</Button>
+                    <Button (click)="ViewGroup(group.name)" class="btn btn-danger">view</Button>
                 </div>
             </div>
         </div>
     </div>
+   

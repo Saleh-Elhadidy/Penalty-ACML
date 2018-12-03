@@ -91,6 +91,19 @@ module.exports.viewGroups = function (req, res, next) { //this is a method that 
 		});
 	});
 };
+module.exports.viewoneGroup = function (req, res, next) { //this is a method that retrieves on group from the database
+  console.log(req.params.name)
+	Group.findOne({name:req.params.name}).exec(function (err, group) {
+		if (err) {
+			return next(err);
+		}
+		res.status(200).json({
+			err: null,
+			msg: 'group retrieved successfully.',
+			data: group
+		});
+	});
+};
 
 
 

@@ -9,20 +9,33 @@ import {Router} from "@angular/router";
 })
 export class GroupsComponent implements OnInit {
   public groups: any[] = [];
-  constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { }
+ 
+
+ 
+  constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { 
+   
+  }
+
 ngOnInit(){
   this.ViewGroups();
 }
 Route(){
   console.log("ana hena");
-this.router.navigate(["/dashboard/viewgroup"]);
+this.router.navigate(["/dashboard/create"]);
 }
-   ViewGroups() {
+ ViewGroups() {
     this.httpClient.get(environment.apiUrl + 'group/getAllGroups').subscribe(
       res => {
         this.groups = res['data'];
       }
     );
   }
+  ViewGroup(ID: string) {
+    localStorage.setItem("GroupName", JSON.stringify(ID));
+    this.router.navigate(['dashboard/viewgroup/']);
+
+  }
+
+
 
 }

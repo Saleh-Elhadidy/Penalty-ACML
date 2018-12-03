@@ -8,21 +8,36 @@ import {Router} from "@angular/router";
   templateUrl: `./viewgroup.html`
 })
 export class ViewGroupComponent implements OnInit {
-  public groups: any[] = [];
+  namein:any ="" ;
+  habits:any[] =[];
+  participants:any[] =[];
+participant:any;
+  emailin:any = localStorage.getItem("UserMail") ;
+  StartDate:any ="" ;
+  EndDate:any="";
+  Data:String;
   constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { }
 ngOnInit(){
-  this.ViewGroups();
+  this.namein =  localStorage.getItem("GroupName") 
+  this.ViewGroup();
 }
-Route(){
-  console.log("ana hena");
-this.router.navigate(["/dashboard/viewgroup"]);
+ViewGroup() {
+  var config = {
+    headers:
+        {
+            'Content-Type': 'application/json'
+        }
 }
-   ViewGroups() {
-    this.httpClient.get(environment.apiUrl + 'group/getAllGroups').subscribe(
-      res => {
-        this.groups = res['data'];
-      }
-    );
-  }
-
+  this.Data =JSON.parse(localStorage.getItem("GroupName"))
+  this.httpClient.get(environment.apiUrl + 'group/viewoneGroup/'+this.Data ,config).subscribe(
+    res => {
+      this.habits = res['data'].habits;
+      this.participants=res['data'].participants;
+      this.StartDate= res['data'].StartDate;
+      this.EndDate= res['data'].EndDate;
+      this.participant= this.participants[0];
+console.log(this.participants)
+    }
+  );
+}
 }
