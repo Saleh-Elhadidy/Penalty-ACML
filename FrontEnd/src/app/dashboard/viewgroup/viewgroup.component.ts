@@ -16,6 +16,7 @@ participant:any;
   StartDate:any ="" ;
   EndDate:any="";
   Data:String;
+  Description:String;
   constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { }
 ngOnInit(){
   this.namein =  localStorage.getItem("GroupName") 
@@ -36,8 +37,13 @@ ViewGroup() {
       this.StartDate= res['data'].StartDate;
       this.EndDate= res['data'].EndDate;
       this.participant= this.participants[0];
-console.log(this.participants)
+      this.Description=res['data'].Description;
+console.log(this.Description)
     }
   );
 }
+ViewGroups(){
+  this.router.navigate(['dashboard/groups/']);     }
+
+
 }

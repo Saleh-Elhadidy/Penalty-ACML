@@ -1,3 +1,9 @@
 <Button (click)="CreateGroup()" class="btn btn-danger">Creat Group</Button>
 <h4>Group Name</h4> <input type="text" [(ngModel)]="namein" >
 <h4>Start Date</h4> <input type="date" [(ngModel)]="StartDate" >
+<h4>Your Aim </h4> <textarea cols="30" rows="4" [(ngModel)] = "description"></textarea>
+<h4>Habits</h4> <input type="text" [(ngModel)]="habit" > <button (click)="insertHabit()">Insert Habit</button>
+
+<div *ngFor="let habit of habits">
+<h4>{{habit}}</h4>
+</div>

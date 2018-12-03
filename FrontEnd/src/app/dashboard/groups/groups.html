@@ -4,12 +4,12 @@
             <div class="card" style="padding:10px 15px; padding-bottom:80px; margin-bottom:20px;display: block; ">
                 <div style="float:left;">
                     <h2>{{group.name}}</h2> 
-                    <span *ngFor="let participant of group.participants;">
-                         <a>{{participant}}</a>
+                    <span *ngFor="let habit of group.habits;">
+                         <a>{{habit}}</a>
                         </span>
                 </div>
                 <div style="float:right;">
-                    <!--Button (click)="ViewGroup(group._id)" class="btn btn-danger">view</Button-->
+                    <Button (click)="Join(group.name)" class="btn btn-danger">Join</Button>
                     <Button (click)="ViewGroup(group.name)" class="btn btn-danger">view</Button>
                 </div>
             </div>

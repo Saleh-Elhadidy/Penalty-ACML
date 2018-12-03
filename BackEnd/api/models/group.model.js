@@ -38,6 +38,9 @@ var GroupSchema = mongoose.Schema({
   EndDate:{
     type: Date,
   },
+  Description :{
+    type:String
+  }
 });
 
 

@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class GroupsComponent implements OnInit {
   public groups: any[] = [];
- 
+ emailin:any=localStorage.getItem("UserMail");
 
  
   constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { 
@@ -20,7 +20,6 @@ ngOnInit(){
   this.ViewGroups();
 }
 Route(){
-  console.log("ana hena");
 this.router.navigate(["/dashboard/create"]);
 }
  ViewGroups() {
@@ -30,10 +29,26 @@ this.router.navigate(["/dashboard/create"]);
       }
     );
   }
+  
   ViewGroup(ID: string) {
     localStorage.setItem("GroupName", JSON.stringify(ID));
     this.router.navigate(['dashboard/viewgroup/']);
 
+  }
+
+  Join(Name: String){
+  var data = JSON.stringify({ name: Name , email:this.emailin})
+   var config = {
+     headers: {
+       'Content-Type': 'application/json'
+     }
+   }
+   this.httpClient.post(environment.apiUrl + 'group/join',data, config).subscribe(
+     res => {
+      console.log(res)
+      localStorage.setItem("GroupName", JSON.stringify(Name));
+      this.router.navigate(['dashboard/viewgroup/']);     }
+   );
   }
 
 
