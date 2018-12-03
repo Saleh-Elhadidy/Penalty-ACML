@@ -1,11 +1,13 @@
 import { Component,AfterViewChecked } from '@angular/core';
+import {Router} from "@angular/router";
+
 declare let paypal :any
 @Component({
   selector: 'app-dashboard-items',
   templateUrl: `./items.html`
 })
 export class ItemsComponent implements AfterViewChecked {
-
+constructor(private router: Router){}
   addScript : boolean = false;
   finalAmount : number = 1;
 
@@ -30,6 +32,7 @@ export class ItemsComponent implements AfterViewChecked {
     onAuthorize:(data,actions) =>{
       return actions.payment.execute().then((payment) =>
       {
+
       })
     }
   }
@@ -39,6 +42,9 @@ export class ItemsComponent implements AfterViewChecked {
         paypal.Button.render(this.paypalConfig,'#paypal-checkout-btn')
       })
     }
+  }
+  Route(){
+    this.router.navigate(["/dashboard/groups"]);
   }
   addPayPalScript(){
     this.addScript = true;
