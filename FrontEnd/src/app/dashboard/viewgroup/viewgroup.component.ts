@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import {Router} from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard-viewgroup',
@@ -18,10 +19,15 @@ participant:any;
   Data:String;
   Description:String;
   checkCounter:any[]=[];
-  constructor(private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { }
+  member:boolean=false;
+  Ended:boolean=false;
+  loser:any;
+  constructor(private toastr: ToastrService,private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { }
 ngOnInit(){
   this.namein =  JSON.parse(localStorage.getItem("GroupName"))
-  this.ViewGroup();}
+  this.ViewGroup();
+
+}
 ViewGroup() {
   var config = {
     headers:
@@ -32,6 +38,7 @@ ViewGroup() {
   this.Data =JSON.parse(localStorage.getItem("GroupName"))
   this.httpClient.get(environment.apiUrl + 'group/viewoneGroup/'+this.Data ,config).subscribe(
     res => {
+      this.Ended=res['data'].Ended
       this.habits = res['data'].habits;
       this.participants=res['data'].participants;
       this.StartDate= res['data'].StartDate;
@@ -39,7 +46,19 @@ ViewGroup() {
       this.participant= this.participants[0];
       this.Description=res['data'].Description;
       this.checkCounter=res['data'].participationCount
-
+for(var i =0 ; i<this.participants.length; i++){
+  console.log(this.participants[i])
+  console.log(this.emailin)
+  if(this.participants[i]==this.emailin)
+{
+  
+  this.member=true;
+  break;
+}
+}
+if(this.Ended==true){
+this.GetResult();
+}
 console.log(this.Description)
     }
   );
@@ -60,8 +79,29 @@ ViewGroups(){
        console.log(res)
        this.checkCounter=res['data'].participationCount
       // this.router.navigate(["/dashboard/groups"]);
-      }
+      }, err => {
+        this.toastr.error("", err.error["msg"]);
+        }
     );
+  }
+
+  GetResult(){
+    var config = {
+      headers:
+          {
+              'Content-Type': 'application/json'
+          }
+  }
+    this.Data =JSON.parse(localStorage.getItem("GroupName"))
+  this.httpClient.get(environment.apiUrl + 'group/getResult/'+this.Data ,config).subscribe(
+    res => {
+      console.log(res['data'])
+      this.loser=res['data'];
+    })
+  }
+
+  payPenalty(){
+    this.router.navigate(['dashboard/items/']);
   }
 
 }

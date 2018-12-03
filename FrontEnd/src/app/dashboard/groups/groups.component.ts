@@ -4,20 +4,23 @@ import { environment } from '../../../environments/environment';
 import {Router} from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-dashboard-groups',
   templateUrl: `./groups.html`
 })
 export class GroupsComponent implements OnInit {
   public groups: any[] = [];
- emailin:any=localStorage.getItem("UserMail");
+ emailin:any= JSON.parse(localStorage.getItem("UserMail"));
+ x = new Date(Date.now());
 
- 
-  constructor(private toastr: ToastrService,private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { 
+ constructor(private toastr: ToastrService,private http: HttpClient, private httpClient: HttpClient, private router: Router  ) { 
    
   }
 
 ngOnInit(){
+  this.x = new Date(Date.now());
+  console.log(this.x);
   this.ViewGroups();
 }
 Route(){
@@ -32,6 +35,7 @@ this.router.navigate(["/dashboard/create"]);
   }
   
   ViewGroup(ID: string) {
+   
     localStorage.setItem("GroupName", JSON.stringify(ID));
     this.router.navigate(['dashboard/viewgroup/']);
 

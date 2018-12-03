@@ -8,84 +8,101 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body id="myPage">
 
-
-<!-- Navbar -->
-<div class="w3-top">
- <div class="w3-bar w3-theme-d2 w3-left-align">
-  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a (click)="ViewGroups()" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Logo</a>
- </div>
-</div>
+<div  *ngIf="!(Ended)">
 
 
-<!-- Team Container -->
-<div class="w3-container w3-padding-64 w3-center" id="team">
-<h1>{{namein}}</h1>
-<p>Participants</p>
-
-<div  *ngFor="let participant of participants">
-
-    <div class="w3-quarter" Style="text-align: center" >
-        <!--img src="/w3images/avatar.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity"-->
-        <!--img src="{{ user.photoUrl }}"-->
-       <span>
-        <h3>{{participant}}</h3> 
-       </span> 
+    <div class="w3-top">
+        <div class="w3-bar w3-theme-d2 w3-left-align">
+         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+         <a (click)="ViewGroups()" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Groups</a>
+        </div>
+       </div>
        
-      </div>
-
-
-
-
-
+       
+       <!-- Team Container -->
+       <div class="w3-container w3-padding-64 w3-center" id="team">
+       <h1>{{namein}}</h1>
+       <p>Participants</p>
+       
+       <div  *ngFor="let participant of participants">
+       
+           <div class="w3-quarter" Style="text-align: center" >
+               <!--img src="/w3images/avatar.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity"-->
+               <!--img src="{{ user.photoUrl }}"-->
+              <span>
+               <h3>{{participant}}</h3>  &nbsp;&nbsp;
+               
+              </span> 
+              
+             </div>
+       
+       
+       
+       
+       
+       </div>
+       </div>
+       
+       <!-- Work Row -->
+       <div class="w3-row-padding w3-padding-64 w3-theme-l1" id="work">
+       
+       <div class="w3-quarter">
+       <h2>Our Aim</h2>
+       <p>{{Description}}</p>
+       </div>
+       
+       <div class="w3-quarter" Style="margin-left: 540px">
+       <div class="w3-card w3-white">
+           <h3 Style="text-align: center">Habits</h3>
+         <div class="w3-container"  *ngFor="let habit of habits">
+         <h4>{{habit}}</h4>
+         
+         </div>
+         </div>
+       </div>
+       
+       <div class="w3-quarter" >
+               <button (click)="Check()" *ngIf="member" >
+                   Check Today !
+               </button>
+           </div>
+       
+       </div>
+       
+       
+       
+       <!--div >
+           <div  *ngFor="let participant of participants" class="w3-quarter">
+           <h6>{{participant}}</h6>
+       </div>
+       <br>
+       <div  *ngFor="let participation of checkCounter" class="w3-quarter">
+           <h6>{{participation}}</h6>
+       
+       </div>
+       
+       </div-->
+       
+       
+       
+       
+       
+       
+       
+       
 </div>
+<!-- Navbar -->
+
+<div *ngIf="(Ended)" Style="text-align: center">
+<h2 >Congratulations !</h2>
+<h3>You have Ended the First Round of your Habits Routine!</h3>
+<Br>
+<Br>
+    <h3>Unfortunately, The loser is:</h3>
+<h1>{{loser}}</h1>
+<h2>Please Pay your Penalty !</h2>
+<button (click)="payPenalty()"> PAY </button>
 </div>
-
-<!-- Work Row -->
-<div class="w3-row-padding w3-padding-64 w3-theme-l1" id="work">
-
-<div class="w3-quarter">
-<h2>Our Aim</h2>
-<p>{{Description}}</p>
-</div>
-
-<div class="w3-quarter" Style="margin-left: 540px">
-<div class="w3-card w3-white">
-    <h3 Style="text-align: center">Habits</h3>
-  <div class="w3-container"  *ngFor="let habit of habits">
-  <h4>{{habit}}</h4>
-  
-  </div>
-  </div>
-</div>
-
-<div class="w3-quarter" >
-        <button (click)="Check()" >
-            Check Today !
-        </button>
-    </div>
-
-</div>
-
-
-
-<!--div >
-    <div  *ngFor="let participant of participants" class="w3-quarter">
-    <h6>{{participant}}</h6>
-</div>
-<br>
-<div  *ngFor="let participation of checkCounter" class="w3-quarter">
-    <h6>{{participation}}</h6>
-
-</div>
-
-</div-->
-
-
-
-
-
-
 
 
 </body>

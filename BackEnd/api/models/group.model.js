@@ -40,6 +40,11 @@ var GroupSchema = mongoose.Schema({
   },
   Description :{
     type:String
+  },
+  Ended:{
+    type:Boolean,
+    required:true,
+    default:false,
   }
 });
 

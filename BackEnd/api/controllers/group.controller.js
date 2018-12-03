@@ -98,11 +98,39 @@ module.exports.viewoneGroup = function (req, res, next) { //this is a method tha
 		if (err) {
 			return next(err);
 		}
+    else{
+      var d = new Date(Date.now());
+      if(d > group.EndDate){
+        Group.findOneAndUpdate(
+          {name: req.params.name},
+           {
+             $set: {Ended:true}
+           },
+           { new: true }
+         ).exec(function(err, updatedGroup) {
+           if (err) {
+             return next(err);
+           }
+           if (!updatedGroup) {
+             return res
+               .status(404)
+               .json({ err: null, msg: 'no group is found.', data: null });
+           }
+           res.status(200).json({
+             err: null,
+             msg: 'Group was updated successfully.',
+             data: updatedGroup
+           });
+         });
+      }else{
 		res.status(200).json({
 			err: null,
 			msg: 'group retrieved successfully.',
 			data: group
-		});
+    });
+  }
+    }
+
 	});
 };
 
@@ -211,9 +239,10 @@ Group.findOne({name : req.params.name}).exec(function(err, group){
   }
   else{
       var id = group._id;
-      var min = -1;
+      var min = 7;
           for(var  i =0; i<group.participationCount.length;i++){
               if(group.participationCount[i]<min){
+                
                 min = group.participationCount[i];
                  x = i;
                 break;
@@ -221,8 +250,8 @@ Group.findOne({name : req.params.name}).exec(function(err, group){
           };    
           console.log(x)
           var endDate = group.EndDate;
-          var now = moment().format("MMM Do YY"); 
-          if(now > endDate){
+          //var now = moment().format("MMM Do YY"); 
+          if(group.Ended){
             group.Loser[i] = group.Loser[i]+1;
             Group.findOneAndUpdate(
               {name: req.params.name},
@@ -243,7 +272,7 @@ Group.findOne({name : req.params.name}).exec(function(err, group){
                res.status(200).json({
                  err: null,
                  msg: 'The email of the user is',
-                 data: group.participants[i]
+                 data: updatedGroup.participants[i]
                });
               }
              });
