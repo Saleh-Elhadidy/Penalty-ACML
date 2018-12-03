@@ -53,6 +53,7 @@ router.post('/group/join', GrpCtrl.join);
 router.post('/group/check', GrpCtrl.check);
 router.get('/group/getAllGroups',GrpCtrl.viewGroups);
 router.get('/group/viewoneGroup/:name',GrpCtrl.viewoneGroup);
+router.get('/group/getResult/:name',GrpCtrl.getResult);
 
 //-----------------------------Authentication Routes-------------------------
 router.post('/auth/register', isNotAuthenticated, authCtrl.register);

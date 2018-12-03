@@ -37,7 +37,8 @@ module.exports.CreateGroup =function(req, res, next){
           });
         }
         else{
-            
+            req.body.EndDate =new Date(req.body.StartDate)
+            req.body.EndDate.setDate(req.body.EndDate.getDate()+7);
 if(req.body.StartDate>req.body.EndDate){
     return res.status(422).json({
         err: null,
@@ -116,7 +117,16 @@ module.exports.join = function(req, res, next){ //req: name of group, email of j
         }
         else
         {
-
+          var x = 0;
+          for(x = 0;x<group.participants;x++){
+            if(group.participants[x]==req.body.email){
+               return res.status(422).json({
+                err: null,
+                msg: 'You have already joined this group',
+                data: null
+            });
+            }
+          }
            
             group.participants.push(req.body.email)
             group.Loser.push(0);
@@ -189,6 +199,62 @@ Group.findOne({name : req.body.name}).exec(function(err, group){
                  });
              }
     }
+})
+}
+module.exports.getResult = function(req, res, next){ //email //group name
+  var x = null;
+Group.findOne({name : req.params.name}).exec(function(err, group){
+  if(err){
+      return next(err)
+  }
+  else{
+      var id = group._id;
+      var min = -1;
+          for(var  i =0; i<group.participationCount.length;i++){
+              if(group.participationCount[i]<min){
+                min = group.participationCount[i];
+                 x = i;
+                break;
+           }
+          };    
+          console.log(x)
+          var endDate = group.EndDate;
+          var now = moment().format("MMM Do YY"); 
+          if(now > endDate){
+            group.Loser[i] = group.Loser[i]+1;
+            Group.findOneAndUpdate(
+              {name: req.params.name},
+               {
+                 $set: {Date:group.Date , participationCount :group.participationCount,Loser:group.Loser}
+               },
+               { new: true }
+             ).exec(function(err, updatedGroup) {
+               if (err) {
+                 return next(err);
+               }
+               if (!updatedGroup) {
+                 return res
+                   .status(404)
+                   .json({ err: null, msg: 'no group is found.', data: null });
+               }
+               else{
+               res.status(200).json({
+                 err: null,
+                 msg: 'The email of the user is',
+                 data: group.participants[i]
+               });
+              }
+             });
+
+
+          }else{
+            res.status(422).json({
+              err: null,
+              msg: 'Group has not ended yet',
+              data: null
+          });
+          }
+  }
 })
 }
 
