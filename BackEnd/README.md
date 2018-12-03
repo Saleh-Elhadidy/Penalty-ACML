@@ -18,3 +18,7 @@ The backend for a simple to-do list web app.
 1. Clone the repo.
 2. npm install
 3. npm start
+
+##Docker guide
+Docker Build -t <Name of Image> bash
+Docker Run -it <Name of Image> bash
