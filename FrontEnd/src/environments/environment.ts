@@ -5,5 +5,7 @@
 
   export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3000/api/'
+    apiUrl: 'http://localhost:3000/api/',
+    GoogleURL :'351066557379-lou7fe4fsbi6n88ep3mjqd7d04g522hu.apps.googleusercontent.com',
+    FacebookURL : '2204728999799015'
 };
