@@ -11,7 +11,7 @@ export class CreateComponent implements OnInit {
   namein:any ="" ;
   habit:any;
   habits:any[] =[];
-  emailin:any = localStorage.getItem("UserMail") ;
+  emailin:any = JSON.parse(localStorage.getItem("UserMail")) ;
   StartDate:any ="" ;
   EndDate:any="";
   description:any="";

@@ -155,8 +155,10 @@ Group.findOne({name : req.body.name}).exec(function(err, group){
         return next(err)
     }
     else{
+      console.log(group.name)
         var id = group._id;
             for(var  i =0; i<group.participants.length;i++){
+              console.log(group.participants[i])
                 if(group.participants[i]==req.body.email){
                    x = i;
                   break;

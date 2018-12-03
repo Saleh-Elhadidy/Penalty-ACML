@@ -29,7 +29,7 @@
         <!--img src="/w3images/avatar.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity"-->
         <!--img src="{{ user.photoUrl }}"-->
        <span>
-        <h3>{{participant}}</h3>
+        <h3>{{participant}}</h3> 
        </span> 
        
       </div>
@@ -59,9 +59,28 @@
   </div>
 </div>
 
-
+<div class="w3-quarter" >
+        <button (click)="Check()" >
+            Check Today !
+        </button>
+    </div>
 
 </div>
+
+
+
+<!--div >
+    <div  *ngFor="let participant of participants" class="w3-quarter">
+    <h6>{{participant}}</h6>
+</div>
+<br>
+<div  *ngFor="let participation of checkCounter" class="w3-quarter">
+    <h6>{{participation}}</h6>
+
+</div>
+
+</div-->
+
 
 
 
